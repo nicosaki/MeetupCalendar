@@ -1,9 +1,9 @@
 # MeetupCalendar
 A superfluous calendar to visually explore upcoming Meetup events
-==============================
+
 #Goals - Project and Personal Learning
 The goal of this project is to create a calendar for Meetups that visually shows me the upcoming meetups I might be interested in and that I've committed to. It will include the use of OAuth , API querying, JSON, authentication with keys, etc. I hope to solidify all of these concepts more by using an API I'm completely unfamiliar with. I also hope to do a better job of separating functionality of methods, and being more organized with keeping things where they belong - really, what I'm after is no more spaghetti.
-===============================
+
 #Target Audience
 Target audience is me. I don't like the calendar for Meetup.com, so I'm going to try and create a version that makes more sense to me. No promises on the visual appeal overall.
 
