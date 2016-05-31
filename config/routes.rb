@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-  root 'topics#by_topic'
+  root 'calendar#by_topic'
   get '/topics' => 'calendar#by_topic', as: 'topics'
   get '/groups' => 'calendar#by_group', as: 'groups'
 
-  get '/auth/:provider/callback' => 'sessions#create'
+  get '/auth/meetup/callback' => 'sessions#create'
 
   get '/calendar/topics' => 'calendar#topics', as: 'topics_calendar' #index
   get '/calendar/groups' => 'calendar#groups', as: 'groups_calendar' #index

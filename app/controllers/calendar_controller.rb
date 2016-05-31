@@ -1,15 +1,39 @@
 class CalendarController < ApplicationController
+  skip_before_action :require_login, only: [:by_topic, :by_group]
+
+  def show
+    #@event = HTTParty.get(specific_event)
+    @user = current_user
+    render :show
+  end
+
   def by_topic
     @sort_by = "topic"
     @categories = params[:topics]
     #@user_events = HTTP.get(meetups for individual user)
+    render :selection_page
   end
 
-  get '/topics' => 'calendar#by_topic', as: 'topics'
-  get '/groups' => 'calendar#by_group', as: 'groups'
+  def by_group
+    @sort_by = "group"
+    @categories = params[:groups]
+    @selected = params[:selected]
+    #@user_events = HTTP.get(meetups for individual user)
+    render :selection_page
+  end
 
-  get '/calendar/topics' => 'calendar#topics', as: 'topics_calendar' #index
-  get '/calendar/groups' => 'calendar#groups', as: 'groups_calendar' #index
-  get '/calendar/:id/event/:user_id' => 'calendar#show', as: 'show_event'
-  post '/calendar/:id/event/:user_id' => 'calendar#show'
+  def topics
+    @sort_by = "topic"
+    @categories = params[:topics]
+    @selected = params[:selected]
+    render :calendar
+  end
+
+  def groups
+    @sort_by = "topic"
+    @categories = params[:groups]
+    @selected = params[:selected]
+    render :calendar
+  end
+
 end
