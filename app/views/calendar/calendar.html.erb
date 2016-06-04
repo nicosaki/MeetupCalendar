@@ -1,0 +1,20 @@
+<p>
+
+</p>
+<% count = 0 %>
+ALL:<%= @events_by_group%>
+END
+<% @events_by_group.each do |group| %>
+  Group:
+  <%= group[count]  %>
+  <% @events = group.values %>
+  <% @events.each do |event| %>
+    Event:
+    <%= event[0].name%>
+    At:
+    <%= event[0].time%>
+
+  <%end%>
+  <% count += 1 %>
+  <br />
+<%end%>

@@ -1,0 +1,9 @@
+<h1>Select the <%=@sort_by%>s for which you'd like to view events:</h1>
+
+<%= form_tag groups_path, method: :get %>
+  <%= render partial: 'selection' %>
+<%= submit_tag "See groups in selected topic(s)" %>
+
+<% unless current_user%>
+  <%=link_to "Sign in here if it weren't broken. Sorry :{("%>
+<%end%>

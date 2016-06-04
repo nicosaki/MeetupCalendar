@@ -1,0 +1,10 @@
+<h1>Select the <%=@sort_by%>s for which you'd like to view events:</h1>
+
+<%= form_tag groups_calendar_path, method: :get do%>
+    <% hidden_field_tag @groups %>
+    <% @groups.each do |group| %>
+      <% @results = group %>
+      <%= render partial: 'selection' %>
+    <%end%>
+<%= submit_tag "See calendar of events by #{@sort_by}" %>
+<%end%>
