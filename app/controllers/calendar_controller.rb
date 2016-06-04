@@ -9,30 +9,32 @@ class CalendarController < ApplicationController
 
   def by_topic
     @sort_by = "topic"
-    @categories = params[:topics]
-    #@user_events = HTTP.get(meetups for individual user)
-    render :selection_page
+    @categories = params[:categories]
+    @results = RMeetup::Client.fetch(:topics)
+
+    render :topic_selection
   end
 
   def by_group
     @sort_by = "group"
-    @categories = params[:groups]
-    @selected = params[:selected]
-    #@user_events = HTTP.get(meetups for individual user)
-    render :selection_page
+    @topics = params[:categories]
+    @groups = retrieve_groups(@topics)
+    render :groups_selection
   end
 
-  def topics
+  def topics #may be extraneous
     @sort_by = "topic"
-    @categories = params[:topics]
-    @selected = params[:selected]
+    @categories = params[:categories]
     render :calendar
   end
 
   def groups
-    @sort_by = "topic"
-    @categories = params[:groups]
-    @selected = params[:selected]
+    @sort_by = "group"
+    @groups_selected = params[:categories]
+    @events_by_group = retrieve_events(@groups_selected)
+    @groups_selected.map do |group|
+      fetch_group(group).name
+    end
     render :calendar
   end
 
