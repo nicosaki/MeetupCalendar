@@ -14,6 +14,13 @@ class UserTest < ActiveSupport::TestCase
     # set per-provider (or default) authentication
     # hashes to return during testing.
 
-    OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new({:provider => 'github', :uid => '123545', info: {email: "a@b.com", name: "Ada"}})
+    OmniAuth.config.mock_auth[:meetup] = OmniAuth::AuthHash.new({provider: 'meetup', uid: "24354", extra: {raw_info:{city: "Seattle"}}})
   end
+
+  test "user is created by find_or_create_from_omniauth" do
+    user = User.find_or_create_from_omniauth({provider: 'meetup', uid: "24354", extra: {raw_info:{city: "Seattle"}}})
+    assert_instance_of User, user
+  end
+
+
 end
