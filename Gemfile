@@ -28,6 +28,8 @@ gem 'omniauth-meetup'
 gem 'omniauth'
 
 gem 'httparty'
+
+gem 'rmeetup'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

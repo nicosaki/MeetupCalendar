@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20160528225816) do
   enable_extension "plpgsql"
 
   create_table "users", force: :cascade do |t|
-    t.string   "uid",        null: false
+    t.string   "uid"
     t.string   "topics"
     t.string   "groups"
     t.string   "zip"
