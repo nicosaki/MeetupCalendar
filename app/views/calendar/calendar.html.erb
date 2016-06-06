@@ -1,20 +1,31 @@
 <p>
 
 </p>
-<% count = 0 %>
-ALL:<%= @events_by_group%>
-END
 <% @events_by_group.each do |group| %>
-  Group:
-  <%= group[count]  %>
   <% @events = group.values %>
-  <% @events.each do |event| %>
-    Event:
-    <%= event[0].name%>
-    At:
-    <%= event[0].time%>
+  <% @events ||= group.values[0] %>
+  <% unless @events.first.empty? %>
+    <% @events.each do |event| %>
+      Event:
+      <%= event[0].name%>
+      At:
+      <%= event[0].time%>
 
+    <%end%>
   <%end%>
-  <% count += 1 %>
   <br />
 <%end%>
+
+<% def start_time%>
+  <% self.time %>
+<%end%>
+
+<%= month_calendar events: @meetups do |date, meetups| %>
+  <%= date %>
+
+  <% meetups.each do |meetup| %>
+    <div>
+      <%= link_to meetup.name, meetup.url %>: <%= meetup.rsvps%>, <%= meetup.start_time %>
+    </div>
+  <% end %>
+<% end %>

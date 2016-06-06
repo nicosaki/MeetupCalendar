@@ -1,8 +1,11 @@
 <ul>
 <% @results.each do |result| %>
-  <li>
-    <%= check_box_tag "categories[]", result.id -%>
-      <%= h result.name -%>
-  </li>
+  <% unless @unique_list.include? result.name %>
+    <li>
+      <%= check_box_tag "categories[]", result.id -%>
+        <%= h result.name -%>
+    </li>
+  <%end%>
+  <% @unique_list << result.name %>
 <%end%>
 </ul%>

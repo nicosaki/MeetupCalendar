@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  start_time: 2016-06-04 19:46:06
+  attending: false
+  rsvps: MyString
+  priority: MyString
+  topic: MyString
+  group: MyString
+
+two:
+  start_time: 2016-06-04 19:46:06
+  attending: false
+  rsvps: MyString
+  priority: MyString
+  topic: MyString
+  group: MyString

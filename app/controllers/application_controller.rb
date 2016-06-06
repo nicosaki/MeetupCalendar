@@ -27,9 +27,20 @@ class ApplicationController < ActionController::Base
   end
 
   def retrieve_events(categories) #categories = collection of group ids
+    # Event.all.destroy
     events = []
     categories.each do |category|
       results = RMeetup::Client.fetch(:events,{:zip => ZIP_CODE, group_id: category})
+      results.each do |event|
+        meetup = Event.find_by(url: event.event_url)
+        if meetup
+          if meetup.updated_at < Date.today
+            Event.update(start_time: event.time, rsvps: event.rsvpcount, name: event.name)
+          end
+        else
+          Event.create(start_time: event.time, rsvps: event.rsvpcount, group: category, url: event.event_url, name: event.name)
+        end
+      end
       results = {"#{category}" => results}
       events << results
     end
@@ -40,5 +51,6 @@ class ApplicationController < ActionController::Base
     results = RMeetup::Client.fetch(:groups, {group_id: group_number, zip: ZIP_CODE})
     return results[0]
   end
+
 
 end

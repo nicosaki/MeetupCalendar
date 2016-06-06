@@ -8,6 +8,7 @@ class CalendarController < ApplicationController
   end
 
   def by_topic
+    @unique_list = []
     @sort_by = "topic"
     @categories = params[:categories]
     @results = RMeetup::Client.fetch(:topics)
@@ -16,6 +17,7 @@ class CalendarController < ApplicationController
   end
 
   def by_group
+    @unique_list = []
     @sort_by = "group"
     @topics = params[:categories]
     @groups = retrieve_groups(@topics)
@@ -29,6 +31,7 @@ class CalendarController < ApplicationController
   end
 
   def groups
+    @meetups = Event.all
     @sort_by = "group"
     @groups_selected = params[:categories]
     @events_by_group = retrieve_events(@groups_selected)
